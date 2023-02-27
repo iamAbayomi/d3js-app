@@ -1,4 +1,4 @@
-import d3, {select, scaleLinear, axisBottom, axisLeft, line, curveCardinal} from "d3"
+import d3, {select, scaleLinear, axisBottom, axisLeft, axisRight ,line, curveCardinal} from "d3"
 import { useEffect } from "react";
 
 const Index = () => {
@@ -60,43 +60,40 @@ const Index = () => {
                 left: 50
             },
             
-            inner_height = HEIGHT - MARGINS.top - MARGINS.bottom,
-
+         
             xScale = scaleLinear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([2000, 2010]),
 
             yScale = scaleLinear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([134, 215]),
 
             xAxis = axisBottom()
+            .tickSize(0)
             .scale(xScale),
 
-            yAxis = axisLeft()
+            yAxis = axisRight()
+               .tickSize(-940)
             .scale(yScale)
 
 
-            const xAxisGrid = axisBottom(xScale).tickSize(-inner_height).tickFormat('').ticks(10)
-
             vis.append("svg:g")
-                .attr("class", "x axis")
+                .attr("class", "x-axis")
                 .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
                 .call(xAxis);
 
-            vis.append("g")
-                .attr("class", "x axis-grid")
-                .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
-                .call(xAxisGrid)
-
+        
             vis.append("svg:g")
                 .attr("class", "y axis")
-                .attr("transform", "translate(" + (MARGINS.left) + ",0)")
+                .attr("class", "y-axis")
+                .attr("transform", "translate(" + (980) + ",0)")
                 .call(yAxis);
 
+          
             var lineGen = line()
                 .x(function(d) {
                     return xScale(d.year);
                 })
                 .y(function(d) {
                     return yScale(d.sale);
-                }).curve(curveCardinal)
+                })
 
             vis.append('svg:path')
                 .attr('d', lineGen(data))
