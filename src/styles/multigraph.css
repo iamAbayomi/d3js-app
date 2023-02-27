@@ -1,14 +1,35 @@
 .axis path {
-    fill: none;
+    fill: none; 
     stroke: #777;
     shape-rendering: crispEdges;
 }
+
 .axis text {
     font-family: Lato;
     font-size: 13px;
 }
 
+.x-axis {
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.x-axis path{
+    color: rgba(0, 0, 0, 0.12);
+}
+
+.y-axis{
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.y-axis path{
+    display: none;
+}
+
+.y-axis line{
+    color: rgba(0, 0, 0, 0.12);
+}
 
 .axis-grid line{
-    stroke: black;
+    stroke: red;
 }
